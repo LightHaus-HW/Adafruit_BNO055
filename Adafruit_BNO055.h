@@ -74,6 +74,15 @@ typedef enum {
   OPERATION_MODE_NDOF = 0X0C
 } adafruit_bno055_opmode_t;
 
+typedef enum{
+  REMAP_AXIS_X = 0b00,
+  REMAP_AXIS_Y = 0b01,
+  REMAP_AXIS_Z = 0b10,
+
+  REMAP_SIGN_POS = 0,
+  REMAP_SIGN_NEG = 1
+} adafruit_bn055_axis_remap_g;
+
 /*!
  *  @brief  Class that stores state and functions for interacting with
  *          BNO055 Sensor
@@ -313,6 +322,14 @@ public:
   /* Power managments functions */
   void enterSuspendMode();
   void enterNormalMode();
+
+  void setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
+                        adafruit_bn055_axis_remap_g axis_y,
+                        adafruit_bn055_axis_remap_g axis_z);
+  
+  void setFullAxisSign(adafruit_bn055_axis_remap_g sign_x,
+                       adafruit_bn055_axis_remap_g sign_y,
+                       adafruit_bn055_axis_remap_g sign_z);
 
 private:
   byte read8(adafruit_bno055_reg_t);

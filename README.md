@@ -1,6 +1,20 @@
 Adafruit Unified BNO055 Driver (AHRS/Orientation)  [![Build Status](https://github.com/adafruit/Adafruit_BNO055/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_BNO055/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/Adafruit_BNO055/html/index.html)
 ================
 
+# FORK NOTES
+
+Fork of Adafruit BNO055 Library for Arduino.
+
+Make sure to add the following dependencies to the `platform.ini` file.
+
+```
+lib_deps = 
+    adafruit/Adafruit BusIO@^1.16.1
+    adafruit/Adafruit Unified Sensor@^1.1.14
+```
+
+---
+
 <a href="https://www.adafruit.com/product/2472"><img src="assets/board.jpg?raw=true" width="500px"></a>
 
 This driver is for the Adafruit BNO055 Breakout, and is based on Adafruit's Unified Sensor Library (Adafruit_Sensor).

@@ -234,6 +234,62 @@ void Adafruit_BNO055::setAxisSign(adafruit_bno055_axis_remap_sign_t remapsign) {
   delay(20);
 }
 
+/**
+ * @brief Set the Axis Remap (3.4) Axis. Parameters should be either
+ * REMAP_AXIS_X, REMAP_AXIS_Y or REMAP_AXIS_Z
+ * 
+ * @param axis_x 
+ * @param axis_y 
+ * @param axis_z 
+ */
+void Adafruit_BNO055::setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
+                      adafruit_bn055_axis_remap_g axis_y,
+                      adafruit_bn055_axis_remap_g axis_z){
+  adafruit_bno055_opmode_t modeback = _mode;
+
+  byte val = 0;
+  val = val | axis_x;
+  val = val | (axis_y << 2);
+  val = val | (axis_z << 4);
+
+  setMode(OPERATION_MODE_CONFIG);
+  delay(25);
+  write8(BNO055_AXIS_MAP_CONFIG_ADDR, val);
+  delay(10);
+  /* Set the requested operating mode (see section 3.3) */
+  setMode(modeback);
+  delay(20);
+}
+
+/**
+ * @brief Set the Axis Remap (3.4) Sign. Parameters should be either 
+ * REMAP_SIGN_POS (+) or REMAP_SIGN_NEG (-)
+ * 
+ * @param sign_x 
+ * @param sign_y 
+ * @param sign_z 
+ */
+void Adafruit_BNO055::setFullAxisSign(adafruit_bn055_axis_remap_g sign_x,
+                     adafruit_bn055_axis_remap_g sign_y,
+                     adafruit_bn055_axis_remap_g sign_z){
+  adafruit_bno055_opmode_t modeback = _mode;
+
+  byte val = 0;
+  val = val | sign_z;
+  val = val | (sign_y << 1);
+  val = val | (sign_x << 2);
+
+  setMode(OPERATION_MODE_CONFIG);
+  delay(25);
+  write8(BNO055_AXIS_MAP_SIGN_ADDR, val);
+  delay(10);
+  /* Set the requested operating mode (see section 3.3) */
+  setMode(modeback);
+  delay(20);
+
+}
+
+
 /*!
  *  @brief  Use the external 32.768KHz crystal
  *  @param  usextal
