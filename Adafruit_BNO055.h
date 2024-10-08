@@ -323,11 +323,11 @@ public:
   void enterSuspendMode();
   void enterNormalMode();
 
-  void setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
+  bool setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
                         adafruit_bn055_axis_remap_g axis_y,
                         adafruit_bn055_axis_remap_g axis_z);
   
-  void setFullAxisSign(adafruit_bn055_axis_remap_g sign_x,
+  bool setFullAxisSign(adafruit_bn055_axis_remap_g sign_x,
                        adafruit_bn055_axis_remap_g sign_y,
                        adafruit_bn055_axis_remap_g sign_z);
 
