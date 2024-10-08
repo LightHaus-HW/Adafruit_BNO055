@@ -325,11 +325,13 @@ public:
 
   bool setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
                         adafruit_bn055_axis_remap_g axis_y,
-                        adafruit_bn055_axis_remap_g axis_z);
+                        adafruit_bn055_axis_remap_g axis_z,
+                        byte* read_res);
   
   bool setFullAxisSign(adafruit_bn055_axis_remap_g sign_x,
                        adafruit_bn055_axis_remap_g sign_y,
-                       adafruit_bn055_axis_remap_g sign_z);
+                       adafruit_bn055_axis_remap_g sign_z,
+                       byte* read_res);
 
 private:
   byte read8(adafruit_bno055_reg_t);

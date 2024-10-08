@@ -244,7 +244,8 @@ void Adafruit_BNO055::setAxisSign(adafruit_bno055_axis_remap_sign_t remapsign) {
  */
 bool Adafruit_BNO055::setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
                       adafruit_bn055_axis_remap_g axis_y,
-                      adafruit_bn055_axis_remap_g axis_z){
+                      adafruit_bn055_axis_remap_g axis_z,
+                      byte* read_res){
   adafruit_bno055_opmode_t modeback = _mode;
 
   byte val = 0;
@@ -260,7 +261,11 @@ bool Adafruit_BNO055::setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
   setMode(modeback);
   delay(20);
 
-  return (read8(BNO055_AXIS_MAP_CONFIG_ADDR) == val);
+  byte reg_read = read8(BNO055_AXIS_MAP_CONFIG_ADDR) & 0x3F;
+  *read_res = reg_read;
+  
+  //Mask the last 6 bits
+  return reg_read == val;
 }
 
 /**
@@ -273,7 +278,8 @@ bool Adafruit_BNO055::setFullAxisRemap(adafruit_bn055_axis_remap_g axis_x,
  */
 bool Adafruit_BNO055::setFullAxisSign(adafruit_bn055_axis_remap_g sign_x,
                      adafruit_bn055_axis_remap_g sign_y,
-                     adafruit_bn055_axis_remap_g sign_z){
+                     adafruit_bn055_axis_remap_g sign_z,
+                     byte* read_res){
   adafruit_bno055_opmode_t modeback = _mode;
 
   byte val = 0;
@@ -289,7 +295,11 @@ bool Adafruit_BNO055::setFullAxisSign(adafruit_bn055_axis_remap_g sign_x,
   setMode(modeback);
   delay(20);
 
-  return (read8(BNO055_AXIS_MAP_SIGN_ADDR) == val);
+  byte reg_read = read8(BNO055_AXIS_MAP_SIGN_ADDR) & 0x07;
+  *read_res = reg_read;
+  
+  //Mask the last 3 bits
+  return (reg_read == val);
 
 }
 
